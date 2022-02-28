@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main Program">
+      <UniqueIdentifier>{8ff37105-12ce-4271-b746-d759fea547fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Usage Test">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DynamicMenuSystemTestFile.cpp">
+      <Filter>Usage Test</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicMenuSystem.cpp">
+      <Filter>Main Program</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynamicMenuSystem.h">
+      <Filter>Main Program</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
