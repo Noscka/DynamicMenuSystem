@@ -17,23 +17,29 @@ public:
 	std::string Name;
 	std::function<void()> Function;
 
-	MenuEntry(std::string name, std::function<void()> function);
+	MenuEntry(std::string name, std::function<void()> function)
+	{
+		Name = name;
+		Function = function;
+	}
 };
 
 static class DynamicMenuSystem
 {
 private:
 	static CONSOLE_SCREEN_BUFFER_INFO csbi;
-	static int columns, rows, counter;
+	static int columns, rows;
 	static std::list<MenuEntry> MenuEntryList;
-	static bool SetUpEntries;
+	static bool SetUpEntries, ContinueMenu;
 
 public:
 	
 	/// <summary>
 	/// Create Menu once everything was set up
 	/// </summary>
-	static void CreateMenu(std::string Name);
+	/// <param name="Title">Title to be displayed</param>
+	/// <param name="AddExitEntry">if there should be "exit menu" entry at the bottom</param>
+	static void CreateMenu(std::string Title, bool AddExitEntry);
 
 	/// <summary>
 	/// Add Entries to Menu
@@ -43,7 +49,7 @@ public:
 	static void AddMenuEntries(int size, MenuEntry ...);
 
 	/// <summary>
-	/// Refresh Menu when new settings are "added"
+	/// Simple Quit Menu, does this by setting menu while loop to false
 	/// </summary>
-	static void RefreshMenu();
+	inline static void QuitMenu();
 };

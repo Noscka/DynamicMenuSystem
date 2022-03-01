@@ -16,32 +16,35 @@ void clear_screen(char fill = ' ')
 	SetConsoleCursorPosition(console, tl);
 }
 
-MenuEntry::MenuEntry(std::string name, std::function<void()> function)
-{
-	Name = name;
-	Function = function;
-}
-
 // Define Variables to not throw "unresolved External Symbol"
 #pragma region Variables
 CONSOLE_SCREEN_BUFFER_INFO DynamicMenuSystem::csbi;
 int DynamicMenuSystem::columns, DynamicMenuSystem::rows;
 std::list<MenuEntry> DynamicMenuSystem::MenuEntryList;
-bool DynamicMenuSystem::SetUpEntries;
+bool DynamicMenuSystem::SetUpEntries, DynamicMenuSystem::ContinueMenu = true;
 #pragma endregion
 
-void DynamicMenuSystem::CreateMenu(std::string name)
+inline void DynamicMenuSystem::QuitMenu() {}
+
+void DynamicMenuSystem::CreateMenu(std::string Title, bool AddExitEntry)
 {
+	DynamicMenuSystem::ContinueMenu = true; // incase menu was quit before
+
+	if(AddExitEntry)
+	{
+		DynamicMenuSystem::MenuEntryList.push_back(MenuEntry("Quit Menu", QuitMenu));
+	}
+
 	int c, ex, counter = 0, CurrentIndex = 0;
 
-	
+	// only run is entries were added
 	if(SetUpEntries)
 	{
-		while(true)
+		while(ContinueMenu)
 		{
-			std::string OutputString;
+			std::string OutputString; // string for full "display" as it is the most perfomace efficent method
 
-			OutputString = AsciiTextGenerator::AsciiWrite(name);
+			OutputString = AsciiTextGenerator::AsciiWrite(Title); // add title with "ascii generator"
 
 			GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 			columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
@@ -111,9 +114,9 @@ void DynamicMenuSystem::CreateMenu(std::string name)
 
 void DynamicMenuSystem::AddMenuEntries(int size, MenuEntry ...)
 {
-	SetUpEntries = true;
+	SetUpEntries = true; // allow for "CreateMenu" to run
 
-	va_list ArgList;
+	va_list ArgList; // valist for "infite" inputs
 	va_start(ArgList, size);
 
 	for(int i = 0; i < size; i++)
@@ -122,28 +125,4 @@ void DynamicMenuSystem::AddMenuEntries(int size, MenuEntry ...)
 	}
 
 	va_end(ArgList);
-}
-
-void DynamicMenuSystem::RefreshMenu()
-{
-	//DynamicMenuSystem::CreateMenu();
-
-	std::string EntryString;
-
-	for(MenuEntry Entry : DynamicMenuSystem::MenuEntryList)
-	{
-		// Append to string as to make it be 1 print operation, makes it way quicker
-		/*if(counter == CurrentIndex)
-		{
-			EntryString += std::string((columns / 2) - (1 + Entry.Name.length()) / 2, ' ') + ">" + Entry.Name + "<\n";
-		}
-		else
-		{*/
-			EntryString += std::string((columns / 2) - Entry.Name.length() / 2, ' ') + Entry.Name + "\n";
-		/* }
-		counter++;*/
-	}
-
-	printf(EntryString.c_str());
-	
 }
