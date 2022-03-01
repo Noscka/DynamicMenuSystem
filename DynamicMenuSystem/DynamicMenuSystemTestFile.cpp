@@ -1,13 +1,16 @@
 #include <iostream>
 #include "DynamicMenuSystem.h"
 
+
+void blank()
+{
+
+}
+
+//MenuEntry MenuEntries,
 int main()
 {
-	DynamicMenuSystem* asshat = new DynamicMenuSystem();
-	DynamicMenuSystem* abc = new DynamicMenuSystem();
-
-	abc->ID = 0;
-	asshat->ID = 1;
-	abc->CreateMenu();
-	asshat->CreateMenu();
+	DynamicMenuSystem::CreateMenu("cunt");
+	DynamicMenuSystem::AddMenuEntries(4, MenuEntry("a", blank), MenuEntry("b", blank), MenuEntry("c", blank), MenuEntry("d", blank));
+	DynamicMenuSystem::RefreshMenu();
 }

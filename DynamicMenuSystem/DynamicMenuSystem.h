@@ -5,6 +5,7 @@
 #include <functional>
 #include <Windows.h>
 #include <iostream>
+#include <list>
 
 #define ARROW_UP    72
 #define ARROW_DOWN  80
@@ -22,13 +23,26 @@ public:
 static class DynamicMenuSystem
 {
 private:
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	int columns, rows, counter;
+	static CONSOLE_SCREEN_BUFFER_INFO csbi;
+	static int columns, rows, counter;
+	static std::list<MenuEntry> MenuEntryList;
 
 public:
-	int ID;
+	
+	/// <summary>
+	/// Set up Menu Enviroment
+	/// </summary>
+	static void CreateMenu(std::string Name);
 
-	DynamicMenuSystem();
+	/// <summary>
+	/// Add Entries to Menu
+	/// </summary>
+	/// <param name="size">Amount of entries being added</param>
+	/// <param name="...">Entry Variable</param>
+	static void AddMenuEntries(int size, MenuEntry ...);
 
-	void CreateMenu();
+	/// <summary>
+	/// Refresh Menu when new settings are "added"
+	/// </summary>
+	static void RefreshMenu();
 };

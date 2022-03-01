@@ -8,18 +8,27 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Main Program\AsciiTextGenerator">
+      <UniqueIdentifier>{a430de74-e37a-44b5-b805-8f94681c977a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DynamicMenuSystem.cpp">
+      <Filter>Main Program</Filter>
+    </ClCompile>
     <ClCompile Include="DynamicMenuSystemTestFile.cpp">
       <Filter>Usage Test</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicMenuSystem.cpp">
-      <Filter>Main Program</Filter>
+    <ClCompile Include="AsciiTextGenerator.cpp">
+      <Filter>Main Program\AsciiTextGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicMenuSystem.h">
       <Filter>Main Program</Filter>
+    </ClInclude>
+    <ClInclude Include="AsciiTextGenerator.h">
+      <Filter>Main Program\AsciiTextGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
