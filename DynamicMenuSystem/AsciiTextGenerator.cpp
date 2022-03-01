@@ -1,10 +1,11 @@
 /*
-Program: ASCII ART Generator
-Description: Design text with ascii art
+Program: ASCII ART Generator (Modified by Ruski1)
+Description: Design text with ascii art. Modification: Made function return string instead of printing it straight to console
 Author: Lord Hypersonic
 Email: lordhypersonic.522@gmail.com
 Website: www.lordhypersonic.blogspot.com
 */
+
 #include <iostream>
 #include <string>
 #include <conio.h>

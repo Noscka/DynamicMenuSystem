@@ -26,11 +26,12 @@ private:
 	static CONSOLE_SCREEN_BUFFER_INFO csbi;
 	static int columns, rows, counter;
 	static std::list<MenuEntry> MenuEntryList;
+	static bool SetUpEntries;
 
 public:
 	
 	/// <summary>
-	/// Set up Menu Enviroment
+	/// Create Menu once everything was set up
 	/// </summary>
 	static void CreateMenu(std::string Name);
 
